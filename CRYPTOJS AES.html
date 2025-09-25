@@ -1,0 +1,55 @@
+doctype <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoJS AES</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script> 
+</head>
+<body>
+    <script> //elementos de la lista a decifrar
+        let mensaje = [ //Array de objetos JSON
+  {
+    method: "AES",
+    key: "ClaveSecreta123",
+    en_message: "U2FsdGVkX196K/YEqrmlaawLjkyv2a5PugdGPbiRZCnL5QBkF/qsRhC1eJKMpEILH1RdjbMkriBX8sFiuNksKHgZPlNZE6XkNN62M2Qcxt/E7FzUZdYlfKgXpFsliDsMrKxaeC1z3LibYcbV/OAL5Q=="
+  },
+  {
+    method: "AES",
+    key: "ClaveSecreta123",
+    en_message: "U2FsdGVkX1/xN4srGzoKj9eom3hA92z2xzQxDPWqJcFtbZ4JC57vhknyxyPuKZCNwzcKE4n4gOgC5vz/pKvtS0UdVjDDEmCXuTj1RiXL20E="
+  },
+  {
+    method: "AES",
+    key: "ClaveSecreta123",
+    en_message: "U2FsdGVkX1+Ee/kEdu6rc8cwk0Qru+H25xMARNelfwaPep6HFHLpvdbV+lTph2V0sTwyzWsSL82pSJHBLjUaajqx0ay4xYandtmmGTiMObUyGjaX1gzxewWDe3AwBiMB79LtwP8OLdlY90rk3VUDrqfeYIBm5G339yoa8+bFHjM="
+  },
+  {
+    method: "AES",
+    key: "ClaveSecreta123",
+    en_message: "U2FsdGVkX18G9w0tKAlXM4Ut6r7EvrFWxdAH5d2N8hku0MG/Gxk6j8rDvBJiG8gFax2H+wpN/7jJtY/MePUwTBtmAitffkLA5z8/NDgcJs8x/0jzVe08C6KImXZw2/7HOOkr+E1svsGJdExSTGikWj9mH0l7D7Un8tqv5MIkb3U="
+  },
+  {
+    method: "AES",
+    key: "ClaveSecreta123",
+    en_message: "U2FsdGVkX19OdlHBkKzwQ/Pt/Z+vAk/2ie6lqHW9uTMYMJEHzBW6hIsgdTZnywXE/1ajRDl42JSDA9UWBSLSTOvBCkUgNQNRiZRS9dyIqwg55U7Ty2As+z/I/zrn5IMM8MqICqVT+hot3r8GJvc+lwFSxixjJ5jXnhoc3I30hFQ="
+  }
+  ];
+
+    //Descifrado del mensaje unicamente para AES
+    //Descifrador para otros metodos con el condicional if/else
+    for(let element of mensaje){ //Lee cada elemento del array
+        console.log("Método de cifrado: " + element.method); //Muestra el método de cifrado utilizado
+        if(element.method === "AES"){ //Condicional para seleccionar el metodo de desencriptación
+            let mensajeDescifrado = CryptoJS.AES.decrypt(element.en_message, element.key);
+            console.log("Mensaje descifrado:" + mensajeDescifrado.toString(CryptoJS.enc.Utf8));
+        } 
+        else // Implementar otros métodos de descifrado aquí
+        {
+            console.log("Método de cifrado no soportado: " + element.method); //Mensaje para métodos no soportados
+            //Aquí irían los otros métodos de desencriptación
+        }
+    }
+    </script>
+</body>
+</html>
